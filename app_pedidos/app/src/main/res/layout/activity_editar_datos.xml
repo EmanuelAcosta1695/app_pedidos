@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/textoInicio"
+    tools:context=".EditarDatosActivity">
+
+    <TextView
+        android:id="@+id/viewNombre"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/nombre" />
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:labelFor="@+id/viewNombre"
+        android:hint="@string/nombre"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/viewApellido"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:text="@string/apellido" />
+
+    <EditText
+        android:id="@+id/txtApellido"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:labelFor="@+id/viewApellido"
+        android:hint="@string/apellido"
+        android:inputType="textPersonName" />
+
+
+    <TextView
+        android:id="@+id/viewDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:text="@string/direccion" />
+
+    <EditText
+        android:id="@+id/txtDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:labelFor="@+id/viewDireccion"
+        android:hint="@string/direccion"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/viewTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:text="@string/telefono" />
+
+    <EditText
+        android:id="@+id/txtTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:labelFor="@+id/viewTelefono"
+        android:hint="@string/telefono"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/viewDni"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:text="@string/dni" />
+
+    <EditText
+        android:id="@+id/txtDni"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:labelFor="@+id/viewDni"
+        android:hint="@string/dni"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="60dp"
+        android:text="@string/guardar"
+        app:backgroundTint="@color/botonInicio" />
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fabEditar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        android:clickable="true"-->
+<!--        android:src="@drawable/ic_edit" />-->
+
+
+</LinearLayout>

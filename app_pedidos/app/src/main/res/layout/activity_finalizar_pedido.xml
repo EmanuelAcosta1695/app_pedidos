@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/textoInicio"
+    android:orientation="vertical"
+    tools:context=".FinalizarPedidoActivity">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/textoInicio"
+        android:shadowColor="@color/text_shadow"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:text="@string/aviso"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="italic" />
+
+    <!--    si usa "textPersonName", el usuario no puede insertar nuevas líneas (no se muestra el botón de entrada)-->
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/nombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtApellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/apellido"
+        android:inputType="textPersonName" />
+
+
+    <EditText
+        android:id="@+id/txtDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/direccion"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/telefono"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtDni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/dni"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnEnvio"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/botonInicio"
+        android:text="@string/envio"
+        android:textAlignment="center"></Button>
+
+    <Button
+        android:id="@+id/btnRetiro"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/btnConfirmar"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/botonInicio"
+        android:text="@string/retiro"></Button>
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/botonInicio"
+        android:text="@string/volver"
+        android:textSize="10dp"></Button>
+
+</LinearLayout>
+
+
+
+

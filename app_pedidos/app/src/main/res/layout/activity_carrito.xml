@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CarritoActivity"
+    android:background="@color/textoInicio">
+
+    <!--se pasa como RecyclerView luego o se recupera asi en la clase de java-->
+    <!--android:id="@+id/listaContactos"-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaCarritoProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/linearBtn"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/viewTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:allowUndo="true"
+            android:text="@string/total"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            app:backgroundTint="@color/botonInicio" />
+
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="140dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/viewTotal"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/Productos"
+            android:textSize="15.5dp"
+            app:backgroundTint="@color/botonInicio"></Button>
+
+        <Button
+            android:id="@+id/btnFinalizarPedido"
+            android:layout_width="140dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/btnVolver"
+            android:layout_gravity="center"
+            android:text="@string/finalizarPedido"
+            android:textSize="12dp"
+            app:backgroundTint="@color/botonInicio"></Button>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

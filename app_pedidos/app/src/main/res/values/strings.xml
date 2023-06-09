@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">App_pedidos</string>
+
+    <string name="title">Panaderia\nBrown</string>
+    <string name="subTitle"><b><i>Desde 2002</i></b>\nLos mejores panificados</string>
+
+    <string name="aviso">Regístrese para poder\nacceder a los envios</string>
+
+    <string name="btnRegistrarse">Registrarse</string>
+
+    <string name="txtMsgEmail">Enviar email con datos de la compra.</string>
+
+
+    <string name="Productos">Productos</string>
+
+    // ----------------------------------------------
+
+    <string name="total">TOTAL:</string>
+    <string name="precio">Precio:</string>
+
+    <string name="confirmar">Confirmar</string>
+    <string name="añadirCarrito">Añadir al carrito</string>
+    <string name="eliminar">Elimiar del carrito</string>
+
+    <string name="finalizarPedido">Finalizar pedido</string>
+    <string name="seguirComprando">Seguir Comprando</string>
+    <string name="guardarDatos">Guardar datos de la compra\n en tu dispositivo.</string>
+    <string name="envio">Envío</string>
+    <string name="retiro">Lo retiro</string>
+    <string name="carrito">Ir al carrito</string>
+    <string name="edtDatos">Editar datos personales</string>
+    <string name="edtCarrito">Editar carrito</string>
+
+
+    <string name="nombre">Nombre:</string>
+    <string name="apellido">Apellido:</string>
+    <string name="user">User:</string>
+    <string name="password">Password:</string>
+    <string name="direccion">Direccion:</string>
+    <string name="telefono">Telefono:</string>
+    <string name="dni">DNI:</string>
+    <string name="email">Email:</string>
+
+<!--    <string name="menu_nuevo">Nuevo registro</string>-->
+
+    <string name="enviar">Enviar</string>
+<!--    <string name="ingresar">Ingresar</string>-->
+    <string name="productos">Ver productos</string>
+    <string name="agregar">Agregar</string>
+    <string name="clientes">Clientes</string>
+
+    <string name="guardar">Guardar</string>
+
+
+    <string name="ayuda">Ayuda</string>
+    <string name="editar">Editar</string>
+
+    <string name="cancelar">Cancelar</string>
+    <string name="volver">Volver</string>
+<!--    <string name="ingreseDatos"><u>Ingrese sus datos: </u></string>-->
+<!--    <string name="editarDatos"><u>Editar datos: </u></string>-->
+</resources>
