@@ -46,7 +46,7 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
 
         holder.viewNombre.setText(listaCarritoPedidos.get(position).getItem_name());
-        holder.viewCantidad.setText(String.valueOf(listaCarritoPedidos.get(position).getCantidad()));
+        holder.viewCantidad.setText(String.valueOf("Cantidad: " + listaCarritoPedidos.get(position).getCantidad()));
 
         // setea foto en base a valor de la propiedad avatar en cada objeto cliente
         switch (listaCarritoPedidos.get(position).getFoto()){
@@ -101,41 +101,16 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.ProductV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, VerProductPedidoCarritoActivity.class);
-                    //intent.putExtra("idProductCarrito", listaCarritoPedidos.get(getAdapterPosition()).getId());
-                    intent.putExtra("idUser", idUser);
-                    intent.putExtra("idPedido", idPedido);
-
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println("  itemView.setOnClickListener ");
-                    System.out.println(" Id position: ");
-                    System.out.println(idPosition);
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" listaCarritoPedidos.get(idPosition).getId() ");
-                    System.out.println(listaCarritoPedidos.get(idPosition).getId());
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" listaCarritoPedidos.get(getAdapterPosition()).getId() ");
-                    System.out.println(listaCarritoPedidos.get(getAdapterPosition()).getId());
-                    System.out.println(" ");
-                    System.out.println(" ");
-
-
-//                    intent.putExtra("idProductCarrito", listaCarritoPedidos.get(idPosition).getId());
-//                    intent.putExtra("idProductCarrito", listaCarritoPedidos.get(getAdapterPosition()).getId());
-                    intent.putExtra("nameProductCarrito", listaCarritoPedidos.get(getAdapterPosition()).getItem_name());
-//                    intent.putExtra("idProductCarrito", idPosition);
-
-                    context.startActivity(intent);
+//                    Context context = view.getContext();
+//                    Intent intent = new Intent(context, VerProductPedidoCarritoActivity.class);
+//
+//                    intent.putExtra("idUser", idUser);
+//                    intent.putExtra("idPedido", idPedido);
+//
+//                    intent.putExtra("nameProductCarrito", listaCarritoPedidos.get(getAdapterPosition()).getItem_name());
+//
+//
+//                    context.startActivity(intent);
                 }
             });
         }

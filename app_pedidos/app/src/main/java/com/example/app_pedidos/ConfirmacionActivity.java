@@ -63,7 +63,6 @@ public class ConfirmacionActivity extends AppCompatActivity {
         DbPedidos dbPedidos = new DbPedidos(ConfirmacionActivity.this);
 
 
-
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
@@ -82,7 +81,6 @@ public class ConfirmacionActivity extends AppCompatActivity {
         }
 
 
-
         listaArrayPedidoFinal = dbPedidos.mostrarPedidos(idUser);
 
         // update pedidos completado = 1
@@ -90,7 +88,7 @@ public class ConfirmacionActivity extends AppCompatActivity {
         try {
             dbPedidos.update_pedido_complete(idUser);
             confirmacionPedido = findViewById(R.id.confirmacionPedido);
-            confirmacionPedido.setText("Pedido registrado exitosamente." + "\n" +  "      Gracias por elegirnos.");
+            confirmacionPedido.setText("Pedido registrado exitosamente." + "\n" + "      Gracias por elegirnos.");
 
         } catch (Exception e) {
             confirmacionPedido = findViewById(R.id.confirmacionPedido);
@@ -192,9 +190,9 @@ public class ConfirmacionActivity extends AppCompatActivity {
                                             file.write(" \n");
                                         }
 
-                                        } catch (Exception e) {
-                                            Toast.makeText(ConfirmacionActivity.this, "No se pudieron iterar los datos de la compra", Toast.LENGTH_LONG).show();
-                                        }
+                                    } catch (Exception e) {
+                                        Toast.makeText(ConfirmacionActivity.this, "No se pudieron iterar los datos de la compra", Toast.LENGTH_LONG).show();
+                                    }
 
 
                                     file.write(" \n");
@@ -208,14 +206,14 @@ public class ConfirmacionActivity extends AppCompatActivity {
                                 }
                             }
                         })
-                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick (DialogInterface dialogInterface,int i){
+                            public void onClick(DialogInterface dialogInterface, int i) {
                             }
                         }).show();
-                }
+            }
 
-            });
+        });
 
 
         // EMAILS ----------------------------------------------------------
@@ -267,276 +265,5 @@ public class ConfirmacionActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // FUNCIONAAAAA
-//        btnEmail = findViewById(R.id.btnEmail);
-//        btnEmail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                edtEmail = findViewById(R.id.edtEmail);
-//                edEmail = edtEmail.getText().toString();
-//
-//
-//                // datos del cliente
-//                cliente = dbClientes.verCliente(idUser);
-//
-//                // listaArrayPedidoFinal
-//                // .toString()
-//
-//                datos = (cliente.getId() + " \n" +
-//                        cliente.getNombre() + " \n" +
-//                        cliente.getDni() + " \n" +
-//                        cliente.getTelefono() + " \n" +
-//                        cliente.getDireccion() + " \n");
-//
-//
-//                for (Pedido pedido : listaArrayPedidoFinal) {
-//
-//                    System.out.println(" ");
-//                    System.out.println(" ");
-//                    System.out.println(" ");
-//                    System.out.println(" pedido ");
-//                    System.out.println(pedido);
-//                    System.out.println(" ");
-//                    System.out.println(" ");
-//
-//                    datos += (" \n" +
-//                            pedido.getId() + " \n" +
-//                            pedido.getOrder_id() + " \n" +
-//                            pedido.getItem_name() + " \n" +
-//                            pedido.getCantidad() + " \n" +
-//                            pedido.getPrecio() + " ], " + " \n");
-//                };
-//
-//
-//
-//                System.out.println(" ");
-//                System.out.println(" ");
-//                System.out.println(" datos ");
-//                System.out.println(datos);
-//                System.out.println(" ");
-//                System.out.println(" ");
-//                System.out.println(" ");
-//
-//                Intent intent = new Intent(Intent.ACTION_SEND);
-//                intent.setType("text/plain");
-//                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{edEmail});
-//                intent.putExtra(Intent.EXTRA_SUBJECT, "Datos de la compra.");
-//                intent.putExtra(Intent.EXTRA_TEXT, datos);  // -> simplemente escribe en datos
-//
-//                try {
-//                    startActivity(intent);
-//                    //startActivity(Intent.createChooser(intent, "Enviar correo"));
-//                    Toast.makeText(getApplicationContext(), "Selecciona un gestor de mail", Toast.LENGTH_SHORT).show();
-//                } catch (android.content.ActivityNotFoundException ex) {
-//                    Toast.makeText(getApplicationContext(), "No hay aplicaciones de correo electrónico instaladas.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
-
-
     }
 }
-
-
-
-
-//        btnEmail = findViewById(R.id.btnEmail);
-//        btnEmail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                edtEmail = findViewById(R.id.edtEmail);
-//                edEmail = edtEmail.getText().toString();
-//
-//                cliente = dbClientes.verCliente(idUser);
-//
-//                datos = (cliente.getId() + " \n" +
-//                        cliente.getNombre() + " \n" +
-//                        cliente.getDni() + " \n" +
-//                        cliente.getTelefono() + " \n" +
-//                        cliente.getDireccion() + " \n");
-//
-//                // Configurar las propiedades para la conexión SMTP
-//                Properties props = new Properties();
-//                props.put("mail.smtp.auth", "true");
-//                props.put("mail.smtp.starttls.enable", "true");
-//                props.put("mail.smtp.host", "smtp.gmail.com"); // Reemplaza con tu servidor SMTP
-//                props.put("mail.smtp.port", "587"); // Reemplaza con el puerto SMTP adecuado
-//
-//                // Configurar las credenciales de autenticación
-//                final String username = "e.acosta1695@gmail.com";
-//                final String password = "3065794576Em";
-//
-//                // Crear una sesión de correo
-//                Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-//                    protected PasswordAuthentication getPasswordAuthentication() {
-//                        return new PasswordAuthentication(username, password);
-//                    }
-//                });
-//
-//                try {
-//                    // Crear el mensaje de correo
-//                    Message message = new MimeMessage(session);
-//                    message.setFrom(new InternetAddress("e.acosta1695@gmail.com")); // Reemplaza con tu dirección de correo
-//                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(edEmail));
-//                    message.setSubject("Datos de la compra.");
-//                    message.setText("datos");
-//
-//                    // Enviar el mensaje
-//                    Transport.send(message);
-//
-//                    Toast.makeText(getApplicationContext(), "Correo enviado", Toast.LENGTH_SHORT).show();
-//                } catch (MessagingException e) {
-//                    Toast.makeText(getApplicationContext(), "Error al enviar el correo", Toast.LENGTH_SHORT).show();
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
-
-
-
-
-
-        // API FormSubmit  -> todo bien pero no llega el mail
-//        btnEmail = findViewById(R.id.btnEmail);
-//        btnEmail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                edtEmail = findViewById(R.id.edtEmail);
-//                edEmail = edtEmail.getText().toString();
-//
-//                cliente = dbClientes.verCliente(idUser);
-//
-////                FormSubmitHelper.submitForm(ConfirmacionActivity.this, cliente.getNombre(), edEmail);
-//                submitForm(cliente.getNombre(), edEmail);
-//
-//            }
-//        });
-//    }
-//
-//    private void submitForm(String name, String email) {
-//        OkHttpClient client = new OkHttpClient();
-//
-//        RequestBody requestBody = new FormBody.Builder()
-//                .add("name", name)
-//                .add("email", email)
-//                .build();
-//
-//        //String url = "https://formsubmit.co/" + email;
-//        String url = "https://formsubmit.co/ema_016@hotmail.com.ar";
-//
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .post(requestBody)
-//                .build();
-//
-//        client.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                Log.e("ConfirmacionActivity", "Error al enviar el correo electrónico: " + e.getMessage());
-//
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(ConfirmacionActivity.this, "Error al enviar el correo electrónico", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//                call.cancel();
-//                client.dispatcher().executorService().shutdown();
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                if (response.isSuccessful()) {
-//                    Log.i("ConfirmacionActivity", "Correo electrónico enviado con éxito");
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(ConfirmacionActivity.this, "Correo electrónico enviado con éxito", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                } else {
-//                    Log.e("ConfirmacionActivity", "Error al enviar el correo electrónico: " + response.code());
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(ConfirmacionActivity.this, "Error al enviar el correo electrónico", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
-//
-//                response.close();
-//                client.dispatcher().executorService().shutdown();
-//            }
-//
-//
-//        });
-//    }
-//}
-
-
-
-
-
-
-//        class FormSubmitHelper {
-//            private final MediaType MEDIA_TYPE_FORM = MediaType.parse("application/x-www-form-urlencoded");
-//
-//            public void submitForm(Context context, String name, String email) {
-//                OkHttpClient client = new OkHttpClient();
-//
-//                RequestBody requestBody = new FormBody.Builder()
-//                        .add("name", name)
-//                        .add("email", email)
-//                        .build();
-//
-//                String url = "https://formsubmit.co/" + email;
-//
-//                Request request = new Request.Builder()
-//                        .url(url)
-//                        .post(requestBody)
-//                        .build();
-//
-//                client.newCall(request).enqueue(new Callback() {
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        // Mostrar mensaje de error al usuario
-//                        Toast.makeText(context, "Error en la solicitud", Toast.LENGTH_SHORT).show();
-//
-//                        // Registrar el error en el registro de errores
-//                        Log.e("FormSubmitHelper", "Error en la solicitud: " + e.getMessage());
-//                    }
-//
-//
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                // Manejar la respuesta de la solicitud
-//                                if (response.isSuccessful()) {
-//                                    Toast.makeText(context, "Correo enviado", Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    Toast.makeText(context, "Error al enviar el correo", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//
-//
-//
-//                        });
-//
-//                    }
-//
-//                });
-//            }
-//        }
-//
-//    }
-//}
-

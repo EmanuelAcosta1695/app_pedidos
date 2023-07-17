@@ -4,6 +4,8 @@
 <!--    <color name="textoInicio">#90F5DB</color>-->
     <color name="textoInicio">#FEC1E1</color>
 
+    <color name="campos">#FFBFB5</color>
+
 <!--    <color name="botonInicio">#87D9FA</color>-->
     <color name="botonInicio">#EAB5FF</color>
 

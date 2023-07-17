@@ -13,19 +13,18 @@
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:background="@color/textoInicio"
-        app:cardCornerRadius="90dp"
+        app:cardCornerRadius="80dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/item_foto"
             android:layout_width="180dp"
-            android:layout_height="wrap_content"
+            android:layout_height="180dp"
             android:background="@color/textoInicio"
-            android:padding="4dp"
             android:radius="5dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/avatar"
+            android:src="@drawable/pan"
             android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>
@@ -34,7 +33,7 @@
 
     <TextView
         android:id="@+id/viewNombre"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_foto"
         android:layout_gravity="center_horizontal"

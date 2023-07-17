@@ -125,13 +125,13 @@ public class VerProductActivity extends AppCompatActivity {
             txtPrecio.setText("$" + product.getPrecio() + "\n Precio por 1 kg");
             aclaranioUnidad.setText("1 = 1kg");
         } else if (product.getNombre().equals("Factura")) {
-            txtPrecio.setText("$" + product.getPrecio() + "\n Precio por paquete de 250g");
+            txtPrecio.setText("$" + product.getPrecio() + "\n Precio por docena");
             aclaranioUnidad.setText("1 = Un paquete de 250");
         } else if (product.getNombre().equals("Sandwich de Miga")) {
             txtPrecio.setText("$" + product.getPrecio() + "\n Precio por docena");
             aclaranioUnidad.setText("1 = Un paquete de 250");
         } else if (product.getNombre().equals("Bizcochos")) {
-            txtPrecio.setText("$" + product.getPrecio() + "\n Precio por paquete de 250g");
+            txtPrecio.setText("$" + product.getPrecio() + "\n Precio por paquete \n     de 250g");
             aclaranioUnidad.setText("1 = Un paquete de 250");
         }
 

@@ -15,6 +15,7 @@
         android:orientation="vertical"
         android:paddingTop="8dp">
 
+
         <TextView
             android:id="@+id/txtNombre"
             android:layout_width="match_parent"
@@ -28,7 +29,6 @@
             android:hint="@string/nombre"
             android:inputType="textPersonName"
             android:textSize="18dp" />
-
 
         <TextView
             android:id="@+id/txtApellido"
@@ -91,6 +91,16 @@
             android:inputType="textPersonName"
             android:textSize="18dp" />
 
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/txtDni"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/border_redondeados">
+
         <TextView
             android:id="@+id/txtDatos"
             android:layout_width="match_parent"
@@ -102,6 +112,9 @@
             android:layout_marginRight="30dp"
             android:ems="10"
             android:textSize="18dp"></TextView>
+
+    </LinearLayout>
+
 
         <TextView
             android:id="@+id/viewTotal"
