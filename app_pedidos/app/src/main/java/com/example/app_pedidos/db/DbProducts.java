@@ -26,14 +26,17 @@ public class DbProducts extends DbHelper{
 
         try {
             DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();  //vamos a escribir en nuestra bd
 
+            // funcion insertar registro
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
             values.put("precio", precio);
             values.put("foto_producto", foto_producto);
 
 
+            //1ero nonmbre de la tabla
+            // aca inserta esos valores a esta tabla
             id = db.insert(TABLE_PRODUCTS, null, values);
 
 
@@ -64,7 +67,7 @@ public class DbProducts extends DbHelper{
                 producto.setFoto(cursorProduct.getInt(3));
 
                 listaProducts.add(producto);
-            } while (cursorProduct.moveToNext());
+            } while (cursorProduct.moveToNext()); // nos  mueve al siguiente contacto
         }
 
         cursorProduct.close();
@@ -95,8 +98,6 @@ public class DbProducts extends DbHelper{
         return producto;
     }
 
-
-
     public boolean editarProduct(int id, String nombre, Integer precio, Integer foto_producto) {
         boolean correcto = false;
 
@@ -118,8 +119,6 @@ public class DbProducts extends DbHelper{
 
         return correcto;
     }
-
-
 
     public boolean eliminarProduct(int id) {
 

@@ -17,7 +17,9 @@ import com.example.app_pedidos.entidades.Pedido;
 
 import java.util.ArrayList;
 
-
+// TENGO QUE CAMBIAR ESTO PARA QUE MUESTRE LOS PRODUCTOS QUE GUARDE EN UN BD
+// voy a nesecitar o un admin que cree esa bd
+// o crear esa bd a manopla y q la app la recoja
 
 public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.ProductViewHolder> {
 
@@ -39,13 +41,14 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.ProductV
         return new ProductViewHolder(view);
     }
 
+    // por cada elemento en carrito, esto se ejecuta
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-
 
         holder.viewNombre.setText(listaCarritoPedidos.get(position).getItem_name());
         holder.viewCantidad.setText(String.valueOf(listaCarritoPedidos.get(position).getCantidad()));
 
+        // setea foto en base a valor de la propiedad avatar en cada objeto cliente
         switch (listaCarritoPedidos.get(position).getFoto()){
             case 1:
                 holder.foto.setImageResource(R.drawable.pan);
@@ -94,16 +97,43 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.ProductV
             foto = itemView.findViewById(R.id.item_foto);
 
 
+            // ESTA ES LA FUNCION DE CUANDO HACE TACTIL SOBRE ALGO, ESE ALGO FUNCIONA COMO BOTON Y ABRE OTRA COSA
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, VerProductPedidoCarritoActivity.class);
-
+                    //intent.putExtra("idProductCarrito", listaCarritoPedidos.get(getAdapterPosition()).getId());
                     intent.putExtra("idUser", idUser);
                     intent.putExtra("idPedido", idPedido);
 
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println("  itemView.setOnClickListener ");
+                    System.out.println(" Id position: ");
+                    System.out.println(idPosition);
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" listaCarritoPedidos.get(idPosition).getId() ");
+                    System.out.println(listaCarritoPedidos.get(idPosition).getId());
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println(" listaCarritoPedidos.get(getAdapterPosition()).getId() ");
+                    System.out.println(listaCarritoPedidos.get(getAdapterPosition()).getId());
+                    System.out.println(" ");
+                    System.out.println(" ");
+
+
+//                    intent.putExtra("idProductCarrito", listaCarritoPedidos.get(idPosition).getId());
+//                    intent.putExtra("idProductCarrito", listaCarritoPedidos.get(getAdapterPosition()).getId());
                     intent.putExtra("nameProductCarrito", listaCarritoPedidos.get(getAdapterPosition()).getItem_name());
+//                    intent.putExtra("idProductCarrito", idPosition);
 
                     context.startActivity(intent);
                 }

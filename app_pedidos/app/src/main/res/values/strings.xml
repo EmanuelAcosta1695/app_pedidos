@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">App_pedidos</string>
+    <string name="app_direction">Brown 242</string>
 
     <string name="title">Panaderia\nBrown</string>
     <string name="subTitle"><b><i>Desde 2002</i></b>\nLos mejores panificados</string>
 
-    <string name="aviso">Regístrese para poder\nacceder a los envios</string>
+    <string name="aviso">Por favor, ingrese sus datos</string>
 
     <string name="btnRegistrarse">Registrarse</string>
 
-    <string name="txtMsgEmail">Enviar email con datos de la compra.</string>
+    <string name="txtMsgEmail">Enviar email con datos del pedido.</string>
 
 
     <string name="Productos">Productos</string>
@@ -24,7 +24,7 @@
 
     <string name="finalizarPedido">Finalizar pedido</string>
     <string name="seguirComprando">Seguir Comprando</string>
-    <string name="guardarDatos">Guardar datos de la compra\n en tu dispositivo.</string>
+    <string name="guardarDatos">Guardar datos del pedido\n en tu dispositivo.</string>
     <string name="envio">Envío</string>
     <string name="retiro">Lo retiro</string>
     <string name="carrito">Ir al carrito</string>

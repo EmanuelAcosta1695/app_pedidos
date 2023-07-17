@@ -24,7 +24,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-
+        // datos del cleintes
         db.execSQL("CREATE TABLE " + TABLE_CLIENTES + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL," +
@@ -33,14 +33,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 "telefono TEXT NOT NULL," +
                 "DNI TEXT NOT NULL)");
 
-
+        // Los productos que se muestran en la app
         db.execSQL("CREATE TABLE " + TABLE_PRODUCTS + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL," +
                 "precio INTEGER NOT NULL," +
                 "foto_producto INTEGER NOT NULL)");
 
-
+        // el pedido del user. Producto a producto. Cada uno se relacion por order_id a un mismo user
         db.execSQL("CREATE TABLE " + TABLE_PEDIDOS + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "order_id INTEGER NOT NULL," +
@@ -51,7 +51,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 "foto INTEGER NOT NULL," +
                 "FOREIGN KEY (order_id) REFERENCES TABLE_CLIENTES(id))");
 
+        // "completado INTEGER DEFAULT 0 NOT NULL," +  --> DEFAULT 0 es False
+        // Boolean flag = (cursor.getInt(cursor.getColumnIndex("flag")) == 1);
 
+        // el total
         db.execSQL("CREATE TABLE " + TABLE_TOTAL + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "order_id INTEGER NOT NULL," +
@@ -60,7 +63,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-
+    // cuando actualiza la bd nesecita de estas lineas
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

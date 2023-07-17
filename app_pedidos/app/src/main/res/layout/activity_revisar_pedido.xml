@@ -17,81 +17,105 @@
 
         <TextView
             android:id="@+id/txtNombre"
-            android:layout_width="375dp"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/campos"
             android:ems="1"
-            android:textSize="18dp"
             android:hint="@string/nombre"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="18dp" />
 
-        
+
         <TextView
             android:id="@+id/txtApellido"
-            android:layout_width="375dp"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:textSize="18dp"
-            android:hint="@string/apellido"
             android:layout_below="@+id/txtNombre"
-            android:inputType="textPersonName" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/campos"
+            android:ems="10"
+            android:hint="@string/apellido"
+            android:inputType="textPersonName"
+            android:textSize="18dp" />
 
 
         <TextView
             android:id="@+id/txtDireccion"
-            android:layout_width="375dp"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/txtNombre"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/campos"
             android:ems="10"
-            android:textSize="18dp"
             android:hint="@string/direccion"
-            android:layout_below="@+id/txtApellido"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/txtTelefono"
-            android:layout_width="375dp"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/txtNombre"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/campos"
             android:ems="10"
-            android:textSize="18dp"
             android:hint="@string/telefono"
-            android:layout_below="@+id/txtDireccion"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/txtDni"
-            android:layout_width="375dp"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/txtNombre"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/campos"
             android:ems="10"
-            android:textSize="18dp"
             android:hint="@string/dni"
-            android:layout_below="@+id/txtTelefono"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/txtDatos"
-            android:layout_width="375dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="18dp"
-            android:ems="10"
+            android:layout_below="@+id/txtDni"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/txtDni">
-        </TextView>
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:ems="10"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/viewTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:allowUndo="true"
+            android:text="@string/total"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="@color/botonInicio" />
 
     </LinearLayout>
 

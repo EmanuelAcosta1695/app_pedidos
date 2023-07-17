@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -36,24 +39,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // es por si vuelve de productActivity aca
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
 
             if(extras != null){
                 idUser = extras.getInt("idUser");
-
+                System.out.println(idUser);
             } else {
                 idUser = null;
-
             }
         } else {
             idUser = (int) savedInstanceState.getSerializable("idUser");
+
         }
 
 
         if (!checkDatabaseExists()) {
 
             try {
+                // crea db
                 DbHelper dbHelper = new DbHelper(MainActivity.this);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -68,26 +73,29 @@ public class MainActivity extends AppCompatActivity {
                 dbProducts.insertarProduct("Sandwich de Miga", 2000, 3); // 1 docena
                 dbProducts.insertarProduct("Bizcochos", 400, 4); // 250gr
 
-
                 DbClientes dbClientes = new DbClientes(MainActivity.this);
 
-
                 idUser = (int) dbClientes.insertarCliente("","","","","");
+                Log.d("idUser", "" + idUser);
 
 
             } catch (Exception e) {
+                System.out.println("Error al crear la DB: " + e);
                 Toast.makeText(MainActivity.this, "no se pudo crear la base de datos", Toast.LENGTH_LONG).show();
             }
 
         } else {
-
+            // La db ya existe
             DbClientes dbClientes = new DbClientes(MainActivity.this);
             clientes = dbClientes.mostrarClientes();
             idUser = clientes.get(0).getId();
-
         }
 
 
+//        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.background);
+//        mediaPlayer.start();
+
+        // Ver lista de productos
         btnVerProductos = findViewById(R.id.btnProductos);
         btnVerProductos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
 
-
+            //id de user con datos vacio
             intent.putExtra("idUser", idUser);
 
+            // id = 0
             intent.putExtra("idPedido", idPedido);
 
-            intent.putExtra("metodoEnvio", metodoEnvio);
 
             startActivity(intent);
 
@@ -111,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean onCreateOptionsMenu(Menu menu){
+        //MenuInflater inflater = getMenuInflater();
+
+        //inflater.inflate(R.menu.menu_principal, menu);
+
         getMenuInflater().inflate(R.menu.menu_principal, menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button
         return true;
@@ -118,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
-
+        // agrego la opcion de acceder a la pantalla de presentacion al menu
         switch (item.getItemId()){
             case R.id.menuNuevo:
                 presentacion();
@@ -130,11 +142,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // pantalla para ver la pantalla de presentacion del comercio
     private void presentacion(){
         Intent intent = new Intent(this, PresentacionActivity.class);
         startActivity(intent);
     }
 
+    // comprueba si la BD existe
     private boolean checkDatabaseExists() {
         File dbFile = getApplicationContext().getDatabasePath("clientes_pedidos.db");
         return dbFile.exists();

@@ -3,7 +3,6 @@ package com.example.app_pedidos;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -89,25 +88,35 @@ public class VerProductPedidoCarritoActivity extends AppCompatActivity {
             }
         } else {
             //idProductCarrito = (int) savedInstanceState.getSerializable("idProductCarrito");
-            nameProductCarrito = savedInstanceState.getString("nameProductCarrito");
+            nameProductCarrito = (String) savedInstanceState.getSerializable("nameProductCarrito");
 
-            idUser = (int) savedInstanceState.getInt("idUser");
+            idUser = (int) savedInstanceState.getSerializable("idUser");
 
-            idPedido = (int) savedInstanceState.getInt("idPedido");
+            idPedido = (int) savedInstanceState.getSerializable("idPedido");
 
+            System.out.println();
+            System.out.println("(int) savedInstanceState.getSerializable");
+            System.out.println("En el VerProduct");
+            System.out.println("id del user: ");
+            System.out.println(idUser);
+            System.out.println();
         }
 
 
+
+        // llamo a dbPedidos para luego insertar el producto en el pedido
         DbPedidos dbPedidos = new DbPedidos(VerProductPedidoCarritoActivity.this);
+//        pedido = dbPedidos.verPedido(idUser, product.getNombre());
         pedido = dbPedidos.verPedido(nameProductCarrito);
 
         nombre = pedido.getItem_name();
-
+        System.out.println(nombre);
 
         if (pedido != null) {
 
             txtNombre.setText(pedido.getItem_name());
 
+            // txtPrecio.setText(product.getPrecio() + ". (Precio por 1 kg)\nSegunda línea de texto");
 
             if (nombre.equals("Pan")) {
                 txtPrecio.setText(product.getPrecio() + ". (Precio por 1 kg)");
@@ -142,15 +151,17 @@ public class VerProductPedidoCarritoActivity extends AppCompatActivity {
 
             txtCantidad.setText(String.valueOf(pedido.getCantidad()));
 
+            // setea el EdiText de edtCantidad a solo numeros
             txtCantidad.setInputType(InputType.TYPE_CLASS_NUMBER);
 
             Integer cantidad = txtCantidad.getInputType();
 
+            // boton para añadir el producto al carrito
             btnEliminar = findViewById(R.id.btnEliminar);
             btnEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    // idUser
                     if(dbPedidos.eliminarPedido(pedido.getItem_name(), idUser)) {
                         carrito();
                     }
@@ -158,8 +169,13 @@ public class VerProductPedidoCarritoActivity extends AppCompatActivity {
             });
 
         } else {
-
-            Log.d("Error!","Pedido es null !!!");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" Error. Pedido = null !!!");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
 
         }
 
@@ -177,11 +193,28 @@ public class VerProductPedidoCarritoActivity extends AppCompatActivity {
         });
 
 
+
+        // para q no habra teclado
+//            txtNombre.setInputType(InputType.TYPE_NULL);
+//            txtApellido.setInputType(InputType.TYPE_NULL);
+//            txtCorreo.setInputType(InputType.TYPE_NULL);
+//            txtDireccion.setInputType(InputType.TYPE_NULL);
+//            txtTelefono.setInputType(InputType.TYPE_NULL);
+//            txtDni.setInputType(InputType.TYPE_NULL);
+
     }
 
     private void carrito(){
         DbPedidos dbPedidos = new DbPedidos(this);
         pedidos = dbPedidos.mostrarPedidos(idUser);
+
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" En carrito() ");
+        System.out.println(" pedidos ");
+        System.out.println(pedidos);
+        System.out.println(" ");
+        System.out.println(" ");
 
 
         if (pedidos.isEmpty()){

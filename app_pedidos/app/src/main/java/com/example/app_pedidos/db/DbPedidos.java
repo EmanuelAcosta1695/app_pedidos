@@ -21,6 +21,8 @@ public class DbPedidos extends DbHelper {
         this.context = context;
     }
 
+    // EN LOS CASOS QUE RETIRA, ingreso a manopla "lo retira"
+
 
 
     public long insertarPedido(Integer order_id, String item_name, Integer cantidad, Integer precio, Boolean completado, Integer foto) {
@@ -28,8 +30,9 @@ public class DbPedidos extends DbHelper {
 
         try {
             DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();  //vamos a escribir en nuestra bd
 
+            // funcion insertar registro
             ContentValues values = new ContentValues();
             values.put("order_id", order_id);
             values.put("item_name", item_name);
@@ -38,7 +41,8 @@ public class DbPedidos extends DbHelper {
             values.put("completado", completado);
             values.put("foto", foto);
 
-
+            //1ero nonmbre de la tabla
+            // aca inserta esos valores a esta tabla
             id = db.insert(TABLE_PEDIDOS, null, values);
 
 
@@ -54,12 +58,21 @@ public class DbPedidos extends DbHelper {
 
         try {
             DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();  //vamos a escribir en nuestra bd
 
             Cursor cursorPedido = null;
 
+            // id = db.insert(TABLE_PEDIDOS, null, values);
 
-            db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET completado = 1 WHERE completado = " + 0 + " and order_id = " + order_id);
+            db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET completado = 1 WHERE completado = " + 0 + " and order_id = " + order_id); // id del user que apunta a order_id
+
+            // db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET completado = 1 WHERE completado = 0");
+
+            // UPDATE MERCADERIAS
+            //SET M_NAME = 'Galletitas Nueve de oro'
+            //WHERE M_ID = 1;
+
+            //  cursorPedido = db.rawQuery("SELECT * FROM " + TABLE_PEDIDOS + " WHERE id = " + id + "completado = " + false, null);
 
         } catch (Exception ex) {
             ex.toString();
@@ -71,13 +84,21 @@ public class DbPedidos extends DbHelper {
 
         try {
             DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();  //vamos a escribir en nuestra bd
 
             Cursor cursorPedido = null;
 
+            // id = db.insert(TABLE_PEDIDOS, null, values);
 
-            db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET order_id = " + idUser + "WHERE id = " + id);
+            db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET order_id = " + idUser + "WHERE id = " + id); // id es el id del pedido
 
+            // db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET completado = 1 WHERE completado = 0");
+
+            // UPDATE MERCADERIAS
+            //SET M_NAME = 'Galletitas Nueve de oro'
+            //WHERE M_ID = 1;
+
+            //  cursorPedido = db.rawQuery("SELECT * FROM " + TABLE_PEDIDOS + " WHERE id = " + id + "completado = " + false, null);
 
         } catch (Exception ex) {
             ex.toString();
@@ -91,12 +112,14 @@ public class DbPedidos extends DbHelper {
 
         try {
             DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();  //vamos a escribir en nuestra bd
 
             Cursor cursorPedido = null;
 
+            //db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET cantidad = " + (cantidad + agregar) + " WHERE item_name = " + nombre + "and completado = " + 0); // id es el id del pedido
             db.execSQL("UPDATE " + TABLE_PEDIDOS + " SET cantidad = " + (cantidad + agregar) + " WHERE item_name = '" + nombre + "' and completado = 0");
 
+            // UPDATE pedidos SET cantidad = cantidad + 30 WHERE item_name = 'bolsas';
 
         } catch (Exception ex) {
             ex.toString();
@@ -106,6 +129,7 @@ public class DbPedidos extends DbHelper {
 
 
 
+    // order_id = user_id
     public ArrayList<Pedido> mostrarPedidos(int idUser){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -114,7 +138,7 @@ public class DbPedidos extends DbHelper {
         Pedido pedido = null;
         Cursor cursorPedido = null;
 
-
+        // me va a mostrar muchos pedidos
         cursorPedido = db.rawQuery("SELECT * FROM " + TABLE_PEDIDOS + " WHERE order_id = " + idUser + " and completado = " + 0, null); // MMMM
 
 
@@ -126,9 +150,12 @@ public class DbPedidos extends DbHelper {
                 pedido.setItem_name(cursorPedido.getString(2));
                 pedido.setCantidad(cursorPedido.getInt(3));
                 pedido.setPrecio(cursorPedido.getInt(4));
-                pedido.setCompletado(Boolean.parseBoolean(cursorPedido.getString(5)));
+                pedido.setCompletado(Boolean.parseBoolean(cursorPedido.getString(5))); // convierte el "True" a true:boolean
                 pedido.setFoto(cursorPedido.getInt(6));
 
+                // cursor.getInt(cursor.getColumnIndex("flag")) == 1
+//                String str = "True";
+//                Boolean bool = Boolean.parseBoolean(str);
 
                 listaPedidos.add(pedido);
             } while (cursorPedido.moveToNext()); // nos  mueve al siguiente contacto
@@ -140,7 +167,6 @@ public class DbPedidos extends DbHelper {
     }
 
 
-
     public ArrayList<Pedido> mostrarPedidosFinalizados(int idUser){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -149,8 +175,8 @@ public class DbPedidos extends DbHelper {
         Pedido pedido = null;
         Cursor cursorPedido = null;
 
-
-        cursorPedido = db.rawQuery("SELECT * FROM " + TABLE_PEDIDOS + " WHERE order_id = " + idUser + " and completado = " + 1, null);
+        // me va a mostrar muchos pedidos
+        cursorPedido = db.rawQuery("SELECT * FROM " + TABLE_PEDIDOS + " WHERE order_id = " + idUser + " and completado = " + 1, null); // MMMM
 
 
         if(cursorPedido.moveToFirst()){
@@ -161,12 +187,15 @@ public class DbPedidos extends DbHelper {
                 pedido.setItem_name(cursorPedido.getString(2));
                 pedido.setCantidad(cursorPedido.getInt(3));
                 pedido.setPrecio(cursorPedido.getInt(4));
-                pedido.setCompletado(Boolean.parseBoolean(cursorPedido.getString(5)));
+                pedido.setCompletado(Boolean.parseBoolean(cursorPedido.getString(5))); // convierte el "True" a true:boolean
                 pedido.setFoto(cursorPedido.getInt(6));
 
+                // cursor.getInt(cursor.getColumnIndex("flag")) == 1
+//                String str = "True";
+//                Boolean bool = Boolean.parseBoolean(str);
 
                 listaPedidos.add(pedido);
-            } while (cursorPedido.moveToNext());
+            } while (cursorPedido.moveToNext()); // nos  mueve al siguiente contacto
         }
 
         cursorPedido.close();
@@ -256,6 +285,7 @@ public class DbPedidos extends DbHelper {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        // cursorPedido = db.rawQuery("SELECT * FROM " + TABLE_PEDIDOS + " WHERE order_id = " + idUser + " and completado = " + 0, null);
 
         try {
             db.execSQL("DELETE FROM " + TABLE_PEDIDOS + " WHERE item_name = '" + item_name + "' AND order_id = '" + idUser + "' AND completado = '0'");

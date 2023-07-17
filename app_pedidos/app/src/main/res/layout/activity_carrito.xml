@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CarritoActivity"
-    android:background="@color/textoInicio">
+    android:background="@color/textoInicio"
+    android:paddingTop="5dp">
 
     <!--se pasa como RecyclerView luego o se recupera asi en la clase de java-->
     <!--android:id="@+id/listaContactos"-->
@@ -13,7 +14,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaCarritoProducts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"  />
 
     <LinearLayout
         android:id="@+id/linearBtn"

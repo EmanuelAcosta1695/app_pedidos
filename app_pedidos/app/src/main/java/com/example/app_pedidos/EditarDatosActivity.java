@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_pedidos.db.DbClientes;
+import com.example.app_pedidos.db.DbPedidos;
 import com.example.app_pedidos.entidades.Cliente;
 import com.example.app_pedidos.entidades.Pedido;
 
@@ -20,11 +21,14 @@ public class EditarDatosActivity extends AppCompatActivity {
 
     EditText txtNombre, txtApellido, txtDireccion, txtTelefono, txtDni;
     Button btnGuardar;
+    private ArrayList<Cliente> clientes;
 
     boolean correcto = false;
 
     Cliente cliente;
 
+
+    ArrayList<Pedido> listaArrayPedidoFinal;
     int idUser;
     int idPedido;
     String metodoEnvio;
@@ -50,21 +54,39 @@ public class EditarDatosActivity extends AppCompatActivity {
                 idUser = extras.getInt("idUser");
                 idPedido = extras.getInt("idPedido");
                 metodoEnvio = extras.getString("metodoEnvio");
-
+                // listaArrayPedidoFinal = (ArrayList<Pedido>) extras.get("ListaArrayPedidoFinal");
             }
         } else {
             idUser = savedInstanceState.getInt("idUser");
             idPedido = savedInstanceState.getInt("idPedido");
             metodoEnvio = savedInstanceState.getString("metodoEnvio");
-
+            // listaArrayPedidoFinal = (ArrayList<Pedido>) savedInstanceState.get("ListaArrayPedidoFinal");
         }
 
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" idUser: ");
+        System.out.println(idUser);
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" METODO ENVIO: ");
+        System.out.println(metodoEnvio);
+        System.out.println(" ");
+        System.out.println(" ");
 
         DbClientes dbClientes = new DbClientes(EditarDatosActivity.this);
         cliente = dbClientes.verCliente(idUser);
 
 
-        if (cliente != null) {
+//        DbPedidos dbPedidos = new DbPedidos(EditarDatosActivity.this);
+//        listaArrayPedidoFinal = dbPedidos.mostrarPedidos(idUser);
+
+        if(cliente != null){
             txtNombre.setText(cliente.getNombre());
             txtApellido.setText(cliente.getApellido());
             txtDireccion.setText(cliente.getDireccion());
@@ -77,10 +99,13 @@ public class EditarDatosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (metodoEnvio.equals("Envio")) {
+                if (metodoEnvio.equals("Envio")){
 
+                    // es una comprobacion para los input, de q no esten vacios
                     if (!txtNombre.getText().toString().equals("") && !txtApellido.getText().toString().equals("") && !txtDireccion.getText().toString().equals("") && !txtTelefono.getText().toString().equals("") && !txtDni.getText().toString().equals("")) {
+//                    if (!existeCliente(txtDni.getText().toString())) {
 
+                        // editarCliente devuelve un boolean
                         correcto = dbClientes.editarCliente(idUser, txtNombre.getText().toString(), txtApellido.getText().toString(), txtDireccion.getText().toString(), txtTelefono.getText().toString(), txtDni.getText().toString());
 
                         if (correcto) {
@@ -96,17 +121,22 @@ public class EditarDatosActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(EditarDatosActivity.this, "ERROR AL MODIFICAR REGISTRO", Toast.LENGTH_SHORT).show();
                         }
-
+//
+//                    } else {
+//                        Toast.makeText(EditarDatosActivity.this, "El DNI ingresado ya está en uso.", Toast.LENGTH_SHORT).show();
+//                    }
                     } else {
                         Toast.makeText(EditarDatosActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_SHORT).show();
                     }
 
 
-                } else if (metodoEnvio.equals("Retiro")) {
+                } else if (metodoEnvio.equals("Retiro")){
 
+                    // es una comprobacion para los input, de q no esten vacios
                     if (!txtNombre.getText().toString().equals("") && !txtApellido.getText().toString().equals("") && !txtDni.getText().toString().equals("")) {
+//                    if (!existeCliente(txtDni.getText().toString())) {
 
-
+                        // editarCliente devuelve un boolean
                         correcto = dbClientes.editarCliente(idUser, txtNombre.getText().toString(), txtApellido.getText().toString(), txtDireccion.getText().toString(), txtTelefono.getText().toString(), txtDni.getText().toString());
 
                         if (correcto) {
@@ -122,7 +152,10 @@ public class EditarDatosActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(EditarDatosActivity.this, "ERROR AL MODIFICAR REGISTRO", Toast.LENGTH_SHORT).show();
                         }
-
+//
+//                    } else {
+//                        Toast.makeText(EditarDatosActivity.this, "El DNI ingresado ya está en uso.", Toast.LENGTH_SHORT).show();
+//                    }
                     } else {
                         Toast.makeText(EditarDatosActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_SHORT).show();
                     }
@@ -136,4 +169,17 @@ public class EditarDatosActivity extends AppCompatActivity {
 
         });
     }
+
+
+    // Valida si el dni que quiere editar el usuario ya existe
+//    private boolean existeCliente(String dni){
+//
+//        for(Cliente c: clientes){
+//            if(c.getDni().equals(dni)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
 }

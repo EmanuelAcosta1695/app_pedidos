@@ -8,49 +8,54 @@
     android:background="@color/textoInicio"
     tools:context=".VerProductActivity">
 
-    <ImageView
-        android:id="@+id/item_foto"
+
+    <androidx.cardview.widget.CardView
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="20dp"
-        android:padding="4dp"
+        android:background="@color/textoInicio"
+        app:cardCornerRadius="90dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/avatar" />
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/item_foto"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@color/textoInicio"
+            android:padding="4dp"
+            android:radius="5dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/avatar"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <TextView
         android:id="@+id/viewNombre"
-        android:layout_width="300dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_foto"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/botonInicio"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textSize="25dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/viewPrecioTxt"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/viewNombre"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="@string/precio"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/viewPrecio"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/viewNombre"
         android:layout_gravity="center_horizontal"
-
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:background="@drawable/textos"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -59,6 +64,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:textAlignment="center"
         android:hint="Cantidad"
@@ -67,7 +73,7 @@
 
     <TextView
         android:id="@+id/aclaracionUnidad"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edtCantidad"
         android:layout_gravity="center_horizontal"
@@ -75,6 +81,7 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="10dp"
+        android:background="@drawable/textos"
         android:textStyle="bold" />
 
 

@@ -23,12 +23,15 @@ public class DbTotal extends DbHelper{
 
         try {
             DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();  //vamos a escribir en nuestra bd
 
+            // funcion insertar registro
             ContentValues values = new ContentValues();
             values.put("order_id", order_id);
             values.put("total", total);
 
+            //1ero nonmbre de la tabla
+            // aca inserta esos valores a esta tabla
             id = db.insert(TABLE_TOTAL, null, values);
 
 
@@ -40,6 +43,7 @@ public class DbTotal extends DbHelper{
     }
 
 
+        // NO CREO QUE LO NESECITE
 //    public ArrayList<Total> mostrarTotal(){
 //        DbHelper dbHelper = new DbHelper(context);
 //        SQLiteDatabase db = dbHelper.getWritableDatabase();

@@ -42,6 +42,9 @@ public class ProductsActivity extends AppCompatActivity  {
 
         listaProducts.setLayoutManager(new LinearLayoutManager(this));
 
+
+        // recibo id del user vacio creado en MainActivity
+        // recibo el id de pedido: vacio de MainActivity. O con valor de VerProduct.
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
 
@@ -59,9 +62,9 @@ public class ProductsActivity extends AppCompatActivity  {
                 }
             }
         } else {
-            idUser = (int) savedInstanceState.getSerializable("idUser");
+            idUser = (int) savedInstanceState.getInt("idUser");
 
-            idPedido = (int) savedInstanceState.getSerializable("idPedido");
+            idPedido = (int) savedInstanceState.getInt("idPedido");
 
         }
 
@@ -72,9 +75,8 @@ public class ProductsActivity extends AppCompatActivity  {
 
         listaArrayProducts = new ArrayList<>();
 
-        ProductAdapter adapterCliente = new ProductAdapter(dbProducts.mostrarProducts(), idUser, idPedido);
-        listaProducts.setAdapter(adapterCliente);
-
+        ProductAdapter adapterProduct = new ProductAdapter(dbProducts.mostrarProducts(), idUser, idPedido);
+        listaProducts.setAdapter(adapterProduct);
 
 
         btnCarrito = findViewById(R.id.btnCarrito);
@@ -84,25 +86,45 @@ public class ProductsActivity extends AppCompatActivity  {
 
                 listaArrayCarritoProducts = dbPedidos.mostrarPedidos(idUser);
 
+                System.out.println("Carrito productos btncarrito productsActivity");
+                System.out.println(listaArrayCarritoProducts);
+                System.out.println(" Vacio: " + listaArrayCarritoProducts.isEmpty());
+
+
                 if (!listaArrayCarritoProducts.isEmpty()) {
+
+                    System.out.println("  ");
+                    System.out.println("  ");
+                    System.out.println(" No esta vacio! ");
+                    System.out.println("  ");
+                    System.out.println("  ");
 
                     Intent intent = new Intent(getApplicationContext(), CarritoActivity.class);
 
                     intent.putExtra("idPedido", idPedido);
                     intent.putExtra("idUser", idUser);
 
+                    System.out.println();
+                    System.out.println("En el product activity");
+                    System.out.println("id del user: ");
+                    System.out.println(idUser);
+                    System.out.println();
+
                     intent.putExtra("metodoEnvio", metodoEnvio);
 
                     startActivity(intent);
 
                 } else {
-
+                    System.out.println("  ");
+                    System.out.println(" VACIO ");
+                    System.out.println("  ");
                     Toast.makeText(ProductsActivity.this, "Aún no sumaste productos a tu carrito.", Toast.LENGTH_LONG).show();
+                    System.out.println("PEDIDO");
+                    System.out.println(idPedido);
                 }
 
             }
         });
-
 
         btnVolver = findViewById(R.id.btnVolver);
         btnVolver.setOnClickListener(new View.OnClickListener() {

@@ -11,7 +11,7 @@ import com.example.app_pedidos.entidades.Cliente;
 
 import java.util.ArrayList;
 
-
+// nos ayuda a realizar las transacciones a la tabla
 public class DbClientes extends DbHelper {
 
     Context context;
@@ -22,13 +22,14 @@ public class DbClientes extends DbHelper {
         this.context = context;
     }
 
+    // NESECITO ALGUNO MAS PARA EL LOGIN. capaz puedo usar el mostrar clientes
 
     public long insertarCliente(String nombre, String apellido, String direccion, String telefono, String DNI) {
         long id = 0;
 
         try {
             DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();  //vamos a escribir en nuestra bd
 
             // funcion insertar registro
             ContentValues values = new ContentValues();
@@ -38,6 +39,9 @@ public class DbClientes extends DbHelper {
             values.put("telefono", telefono);
             values.put("DNI", DNI);
 
+            //1ero nonmbre de la tabla
+            // aca inserta esos valores a esta tabla
+            // the row ID of the newly inserted row, or -1 if an error occurred
             id = db.insert(TABLE_CLIENTES, null, values);
 
 

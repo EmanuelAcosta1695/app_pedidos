@@ -16,6 +16,8 @@ public class PresentacionActivity extends AppCompatActivity {
     private TextView textoEmpresa;
 
 
+    // AGREGAR EL ID Y METODO ENVIO por si el user vuelve para aca
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +28,11 @@ public class PresentacionActivity extends AppCompatActivity {
         textoEmpresa.setText("Somos una empresa que se dedica \na la venta de panificados \ndesde 2002.");
 
         videoView1 = findViewById(R.id.videoView1);
+        //videoView2 = findViewById(R.id.videoView2);
 
     }
 
-
+    // funcionalidades de pausa, detener e iniciar del video local
     public void pausar1(View view) {
         videoView1.pause();
         posicion = videoView1.getCurrentPosition();
