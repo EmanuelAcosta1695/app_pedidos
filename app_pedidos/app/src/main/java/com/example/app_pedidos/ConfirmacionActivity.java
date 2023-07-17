@@ -88,7 +88,7 @@ public class ConfirmacionActivity extends AppCompatActivity {
         try {
             dbPedidos.update_pedido_complete(idUser);
             confirmacionPedido = findViewById(R.id.confirmacionPedido);
-            confirmacionPedido.setText("Pedido registrado exitosamente." + "\n" + "      Gracias por elegirnos.");
+            confirmacionPedido.setText("     Pedido registrado \n         exitosamente.\n  Gracias por elegirnos.  ");
 
         } catch (Exception e) {
             confirmacionPedido = findViewById(R.id.confirmacionPedido);

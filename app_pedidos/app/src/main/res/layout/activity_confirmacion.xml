@@ -8,13 +8,15 @@
 
     <TextView
         android:id="@+id/confirmacionPedido"
-        android:layout_width="340dp"
-        android:layout_height="130dp"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/back"
-        android:padding="10dp"
-        android:textSize="22dp"></TextView>
+        android:paddingTop="15dp"
+        android:text="      Pedido registrado \n
+       exitosamente.\n   Gracias por elegirnos."
+        android:textSize="25dp"></TextView>
 
     <Button
         android:id="@+id/btnSeguirComprando"

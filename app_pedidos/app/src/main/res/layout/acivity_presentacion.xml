@@ -14,9 +14,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="20dp"
-
-        android:padding="10dp"
-        android:background="@drawable/border_redondeados"></VideoView>
+        android:padding="10dp">
+    </VideoView>
 
     <LinearLayout
         android:id="@+id/ButonsLayout1"
@@ -49,17 +48,15 @@
 
     <TextView
         android:id="@+id/textoEmpresa"
-        android:layout_width="250dp"
+        android:layout_width="260dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="330dp"
-        android:background="@drawable/border_redondeados"
-
+        android:layout_marginTop="300dp"
+        android:gravity="center"
         android:padding="5dp"
-        android:textColor="@color/black">
-        //android:background="@drawable/back">
-    </TextView>
-
-
+        android:text=" ''Somos una empresa que se dedica a la venta de panificados desde 2002.''"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:fontFamily="@font/milea_lover"/>
 
 </RelativeLayout>

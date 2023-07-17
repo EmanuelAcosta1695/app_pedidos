@@ -312,25 +312,8 @@ public class FinalizarPedidoActivity extends AppCompatActivity {
         return false;
     }
 
-//    // lleva a la pantalla de ver Productos? (NO, RevisarPedidoActivity)
-//    private void revisarPedido(int idUser, int idPedido, String metodoEnvio){
-//
-//        Intent intent = new Intent(this, RevisarPedidoActivity.class);
-//
-//        //intent.putExtra("msgFinal", msgFinal);
-//        //intent.putExtra("IdUser", idUser);
-//        intent.putExtra("idUser", idUser);
-//        intent.putExtra("idPedido", idPedido);
-//        intent.putExtra("metodoEnvio", metodoEnvio);
-//        //intent.putExtra("ListaArrayPedidoFinal", listaArrayPedidoFinal);
-//        startActivity(intent);
-//    }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_principal, menu);
-
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button
         return true;
 

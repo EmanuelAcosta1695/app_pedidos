@@ -25,7 +25,7 @@ public class PresentacionActivity extends AppCompatActivity {
         setContentView(R.layout.acivity_presentacion);
 
         textoEmpresa = findViewById(R.id.textoEmpresa);
-        textoEmpresa.setText("Somos una empresa que se dedica \na la venta de panificados \ndesde 2002.");
+        textoEmpresa.setText("Somos una empresa que se dedica a la venta de panificados desde 2002.");
 
         videoView1 = findViewById(R.id.videoView1);
         //videoView2 = findViewById(R.id.videoView2);

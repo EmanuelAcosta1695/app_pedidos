@@ -139,7 +139,6 @@ public class ProductsActivity extends AppCompatActivity  {
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button
         return true;
 

@@ -119,10 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean onCreateOptionsMenu(Menu menu){
-        //MenuInflater inflater = getMenuInflater();
-
-        //inflater.inflate(R.menu.menu_principal, menu);
-
         getMenuInflater().inflate(R.menu.menu_principal, menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button
         return true;
@@ -147,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PresentacionActivity.class);
         startActivity(intent);
     }
+
 
     // comprueba si la BD existe
     private boolean checkDatabaseExists() {

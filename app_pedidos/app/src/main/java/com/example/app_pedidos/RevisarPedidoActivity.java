@@ -188,7 +188,7 @@ public class RevisarPedidoActivity extends AppCompatActivity {
                 System.out.println(" ");
 
 
-                cadena += ("⚫" + (pedido.getItem_name()) + "  x" + (pedido.getCantidad()) + "  $" + (pedido.getPrecio()*pedido.getCantidad()) + ("\n"));
+                cadena += ("◇" + (pedido.getItem_name()) + "  x" + (pedido.getCantidad()) + "  $" + (pedido.getPrecio()*pedido.getCantidad()) + ("\n"));
             }
         } catch (Exception ex){
             ex.toString();
@@ -299,10 +299,6 @@ public class RevisarPedidoActivity extends AppCompatActivity {
 //    }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_principal, menu);
-
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button
         return true;
 

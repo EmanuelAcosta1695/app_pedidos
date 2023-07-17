@@ -437,10 +437,6 @@ public class VerProductActivity extends AppCompatActivity {
 
 
     public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_principal, menu);
-
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button
         return true;
     }

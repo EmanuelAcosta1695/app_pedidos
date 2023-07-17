@@ -171,15 +171,4 @@ public class EditarDatosActivity extends AppCompatActivity {
     }
 
 
-    // Valida si el dni que quiere editar el usuario ya existe
-//    private boolean existeCliente(String dni){
-//
-//        for(Cliente c: clientes){
-//            if(c.getDni().equals(dni)){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
 }
