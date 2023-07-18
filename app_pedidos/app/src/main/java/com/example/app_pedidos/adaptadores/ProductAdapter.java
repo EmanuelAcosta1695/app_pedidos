@@ -99,7 +99,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             viewPrecio = itemView.findViewById(R.id.viewPrecio);
             foto = itemView.findViewById(R.id.item_foto);
 
-            // ESTA ES LA FUNCION DE CUANDO HACE TACTIL SOBRE ALGO, ESE ALGO FUNCIONA COMO BOTON Y ABRE OTRA COSA
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

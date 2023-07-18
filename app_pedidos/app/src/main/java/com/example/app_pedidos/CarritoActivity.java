@@ -30,7 +30,6 @@ import java.util.ArrayList;
 public class CarritoActivity extends AppCompatActivity {
 
     RecyclerView listaCarritoPedidos;
-    ArrayList<Pedido> listaArrayCarritoProducts;
     private Button btnFinalizarPedido, btnVolver;
     TextView viewTotal;
 
@@ -58,57 +57,35 @@ public class CarritoActivity extends AppCompatActivity {
                 idUser = extras.getInt("idUser");
                 idPedido = extras.getInt("idPedido");
                 metodoEnvio = extras.getString("metodoEnvio");
-                // listaArrayPedidoFinal = (ArrayList<Pedido>) extras.get("ListaArrayPedidoFinal");
             }
         } else {
             idUser = savedInstanceState.getInt("idUser");
             idPedido = savedInstanceState.getInt("idPedido");
             metodoEnvio = savedInstanceState.getString("metodoEnvio");
-            // listaArrayPedidoFinal = (ArrayList<Pedido>) savedInstanceState.get("ListaArrayPedidoFinal");
         }
-
-
-        System.out.println();
-        System.out.println("#-----------");
-        System.out.println("EN CARRITO ACTIVITY");
-        System.out.println("id del user: ");
-        System.out.println(idUser);
-        System.out.println("#-----------");
 
 
         listaCarritoPedidos = findViewById(R.id.listaCarritoProducts);
         listaCarritoPedidos.setLayoutManager(new LinearLayoutManager(this));
 
         DbPedidos dbPedidos = new DbPedidos(CarritoActivity.this);
-
         DbTotal dbtotal = new DbTotal(CarritoActivity.this);
 
-
-        CarritoAdapter adapterCarrito = new CarritoAdapter(dbPedidos.mostrarPedidos(idUser), idUser, idPedido);  // DEVUELVE UNA LISTA
+        CarritoAdapter adapterCarrito = new CarritoAdapter(dbPedidos.mostrarPedidos(idUser), idUser, idPedido);
         listaCarritoPedidos.setAdapter(adapterCarrito);
 
 
         try {
             // almacena aparte los elementos pedidos por el user
             listaArrayPedidoFinal = dbPedidos.mostrarPedidos(idUser);
-            System.out.println();
-            System.out.println("Consulta SQL");
-            System.out.println(listaArrayPedidoFinal);
-            System.out.println();
-            System.out.println();
         } catch (Exception ex){
             ex.toString();
-            System.out.println();
             System.out.println(ex);
-            System.out.println();
         }
 
 
-
-        // LO NESECITO ACA AFUERA PARA QUE CADA VER Q SE MUESTRE EL CARRITO, ME MUESTRA EL VALOR DE
-        // TOTAL
-        // itero el array para obtener precio*cantidad y sumar al final al otal
-
+        // Se coloca aqui fuera para que cada vez que se muestre el carrito, se muestre el Total
+        // Itero el array para obtener precio*cantidad y sumar al final al otal
         try{
             for (Pedido pedidoFinal: listaArrayPedidoFinal){
                 precio = pedidoFinal.getPrecio();
@@ -120,7 +97,6 @@ public class CarritoActivity extends AppCompatActivity {
             viewTotal = findViewById(R.id.viewTotal);
             viewTotal.setText(String.valueOf("Total: $" + total));
 
-
         } catch (Exception ex){
             System.out.println(ex);
         }
@@ -130,32 +106,8 @@ public class CarritoActivity extends AppCompatActivity {
         btnFinalizarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // idUser es el valor que recibe order_id px cada order_id hace referencia a un usuario especifico
                 id = (int) dbtotal.insertarTotal(idUser, total); //QUEDA REGISTRADO EL TOTAL
-
-
-                DbClientes dbClientes = new DbClientes(CarritoActivity.this);
-                cliente = dbClientes.verCliente(idUser);
-
-                try {
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(cliente);
-                    System.out.println(cliente.getNombre());
-                    System.out.println(cliente.getApellido());
-                    System.out.println(" ");
-                    System.out.println(" ");
-                    System.out.println(" ");
-                } catch (Exception e) {
-                    System.out.println(" ");
-                    System.out.println(e);
-                    System.out.println("Cliente Vacio");
-                    System.out.println(" ");
-                }
-
-//                if (cliente == null || (cliente.getNombre().equals("") && cliente.getApellido().equals("") && cliente.getDireccion().equals("") && cliente.getDni().equals("") && cliente.getTelefono().equals(""))) {
 
                 Intent finalizarPedido = new Intent(getApplicationContext(), FinalizarPedidoActivity.class);
 
@@ -164,17 +116,6 @@ public class CarritoActivity extends AppCompatActivity {
                 finalizarPedido.putExtra("metodoEnvio", metodoEnvio);
 
                 startActivity(finalizarPedido);
-
-//                } else {
-//
-//                    Intent revisarPedido = new Intent(getApplicationContext(), RevisarPedidoActivity.class);
-//
-//                    revisarPedido.putExtra("idPedido", idPedido);
-//                    revisarPedido.putExtra("idUser", idUser);
-//                    revisarPedido.putExtra("metodoEnvio", metodoEnvio);
-//
-//                    startActivity(revisarPedido);
-//                }
             }
         });
 
@@ -192,6 +133,7 @@ public class CarritoActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu){
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button

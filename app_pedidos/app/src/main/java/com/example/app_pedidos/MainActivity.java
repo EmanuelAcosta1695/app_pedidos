@@ -39,18 +39,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // es por si vuelve de productActivity aca
+        // Declaro este condicional por si el usuario vuelve de productActivity aca
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
 
             if(extras != null){
                 idUser = extras.getInt("idUser");
-                System.out.println(idUser);
             } else {
                 idUser = null;
             }
         } else {
-            idUser = (int) savedInstanceState.getSerializable("idUser");
+            idUser = savedInstanceState.getInt("idUser");
 
         }
 
@@ -92,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-//        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.background);
-//        mediaPlayer.start();
-
         // Ver lista de productos
         btnVerProductos = findViewById(R.id.btnProductos);
         btnVerProductos.setOnClickListener(new View.OnClickListener() {
@@ -106,12 +102,10 @@ public class MainActivity extends AppCompatActivity {
             //id de user con datos vacio
             intent.putExtra("idUser", idUser);
 
-            // id = 0
+            // int idPedido = 0
             intent.putExtra("idPedido", idPedido);
 
-
             startActivity(intent);
-
             }
         });
 
@@ -126,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
-        // agrego la opcion de acceder a la pantalla de presentacion al menu
+
+        // Agrego la opcion de acceder a la pantalla de presentacion al menu
         switch (item.getItemId()){
             case R.id.menuNuevo:
                 presentacion();
@@ -138,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // pantalla para ver la pantalla de presentacion del comercio
+    // Funcion para ver la pantalla de presentacion del comercio
     private void presentacion(){
         Intent intent = new Intent(this, PresentacionActivity.class);
         startActivity(intent);

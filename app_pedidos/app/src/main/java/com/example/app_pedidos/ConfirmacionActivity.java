@@ -48,10 +48,7 @@ public class ConfirmacionActivity extends AppCompatActivity {
 
     int idUser, idPedido;
     ArrayList<Pedido> listaArrayPedidoFinal;
-    private ArrayList<Cliente> clientes;
     Cliente cliente;
-
-    String datos;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,24 +63,21 @@ public class ConfirmacionActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
-//                msgFinal = null;
                 idUser = Integer.parseInt(null);
                 idPedido = Integer.parseInt(null);
             } else {
-//                msgFinal = extras.getString("msgFinal");
                 idUser = extras.getInt("idUser");
                 idPedido = extras.getInt("idPedido");
             }
         } else {
-//            msgFinal = (String) savedInstanceState.getSerializable("msgFinal");
-            idUser = (int) savedInstanceState.getInt("idUser");
-            idPedido = (int) savedInstanceState.getInt("idPedido");
+            idUser = savedInstanceState.getInt("idUser");
+            idPedido = savedInstanceState.getInt("idPedido");
         }
 
 
         listaArrayPedidoFinal = dbPedidos.mostrarPedidos(idUser);
 
-        // update pedidos completado = 1
+
 
         try {
             dbPedidos.update_pedido_complete(idUser);
@@ -95,14 +89,6 @@ public class ConfirmacionActivity extends AppCompatActivity {
             confirmacionPedido.setText("El pedido no se pudo registrar. Intentelo mas tarde.");
         }
 
-
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" Array desde RevisarPedido: " + listaArrayPedidoFinal);
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
 
         btnSeguirComprando = findViewById(R.id.btnSeguirComprando);
         btnSeguirComprando.setOnClickListener(new View.OnClickListener() {
@@ -116,110 +102,64 @@ public class ConfirmacionActivity extends AppCompatActivity {
         });
 
 
-        // ----------------------------------------------
-
-        //TENGO QUE MODIFICAR
-        // NESECITO DATOS DE LA COMPRA Y DEL CLIENTE
-        // ADEMAS ME VA A SERVIR PARA ENVIARSELOS POR MAIL AL USER
-//        // Guarda datos de los clientes en un .txt
-
-
-        //listaArrayPedidoFinal = dbPedidos.mostrarPedidosFinalizados(idUser);
-
-        for (Pedido pedido : listaArrayPedidoFinal) {
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" pedido ");
-            System.out.println(pedido);
-            System.out.println(" ");
-            System.out.println(" ");
-        }
-
-
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" listaArrayPedidoFinal ");
-        System.out.println(listaArrayPedidoFinal);
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" idUser ");
-        System.out.println(idUser);
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
-
-
         btnGuardarDatos = findViewById(R.id.btnGuardarDatos);
         btnGuardarDatos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmacionActivity.this);
                 builder.setMessage("Desea guardar los datos de los clientes?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                String filename = "Datos-de-la-compra.txt";
-                                //ArrayList<Cliente> list_Clientes = dbClientes.mostrarClientes();
+                        String filename = "Datos-de-la-compra.txt";
 
+                        cliente = dbClientes.verCliente(idUser);
 
-                                cliente = dbClientes.verCliente(idUser);
+                        try {
+                            OutputStreamWriter file = new OutputStreamWriter(openFileOutput(filename, Context.MODE_PRIVATE));
 
+                            file.write("[ " + cliente.getId() + " \n");
+                            file.write(cliente.getNombre() + " \n");
+                            file.write(cliente.getApellido() + " \n");
+                            file.write(cliente.getDni() + " \n");
+                            file.write(cliente.getTelefono() + " \n");
+                            file.write(cliente.getDireccion() + " \n");
 
-                                try {
-                                    OutputStreamWriter file = new OutputStreamWriter(openFileOutput(filename, Context.MODE_PRIVATE));
-
-                                    file.write("[ " + cliente.getId() + " \n");
-                                    file.write(cliente.getNombre() + " \n");
-                                    file.write(cliente.getApellido() + " \n");
-                                    file.write(cliente.getDni() + " \n");
-                                    file.write(cliente.getTelefono() + " \n");
-                                    file.write(cliente.getDireccion() + " \n");
-
-                                    try {
-                                        for (Pedido pedido : listaArrayPedidoFinal) {
-                                            file.write("[ " + pedido.getId() + " \n");
-                                            file.write(pedido.getOrder_id() + " \n");
-                                            file.write(pedido.getItem_name() + " \n");
-                                            file.write(pedido.getCantidad() + " \n");
-                                            file.write(pedido.getPrecio() + " ], " + " \n");
-
-                                            file.write(" \n");
-                                        }
-
-                                    } catch (Exception e) {
-                                        Toast.makeText(ConfirmacionActivity.this, "No se pudieron iterar los datos de la compra", Toast.LENGTH_LONG).show();
-                                    }
-
+                            try {
+                                for (Pedido pedido : listaArrayPedidoFinal) {
+                                    file.write("[ " + pedido.getId() + " \n");
+                                    file.write(pedido.getOrder_id() + " \n");
+                                    file.write(pedido.getItem_name() + " \n");
+                                    file.write(pedido.getCantidad() + " \n");
+                                    file.write(pedido.getPrecio() + " ], " + " \n");
 
                                     file.write(" \n");
-
-                                    file.flush();
-                                    file.close();
-                                    Toast.makeText(ConfirmacionActivity.this, "Los datos se guardaron exitosamente", Toast.LENGTH_LONG).show();
-
-                                } catch (IOException e) {
-                                    Toast.makeText(ConfirmacionActivity.this, "No se pudieron guardar los datos", Toast.LENGTH_LONG).show();
                                 }
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
-                        }).show();
-            }
 
+                            } catch (Exception e) {
+                                Toast.makeText(ConfirmacionActivity.this, "No se pudieron iterar los datos de la compra", Toast.LENGTH_LONG).show();
+                            }
+
+                            file.write(" \n");
+
+                            file.flush();
+                            file.close();
+                            Toast.makeText(ConfirmacionActivity.this, "Los datos se guardaron exitosamente", Toast.LENGTH_LONG).show();
+
+                        } catch (IOException e) {
+                            Toast.makeText(ConfirmacionActivity.this, "No se pudieron guardar los datos", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).show();
+            }
         });
 
-
-        // EMAILS ----------------------------------------------------------
-
-
-        // e.acosta1695@gmail.com
 
         btnEmail = findViewById(R.id.btnEmail);
         btnEmail.setOnClickListener(new View.OnClickListener() {
@@ -238,6 +178,7 @@ public class ConfirmacionActivity extends AppCompatActivity {
                         "Teléfono: " + cliente.getTelefono() + "\n" +
                         "Dirección: " + cliente.getDireccion() + "\n";
 
+
                 // Obtener los datos de los pedidos
                 StringBuilder datosPedidos = new StringBuilder("Datos de los pedidos: \n");
                 for (Pedido pedido : listaArrayPedidoFinal) {
@@ -247,6 +188,7 @@ public class ConfirmacionActivity extends AppCompatActivity {
                             .append("Cantidad: ").append(pedido.getCantidad()).append("\n")
                             .append("Precio: ").append(pedido.getPrecio()).append("\n\n");
                 }
+
 
                 // Concatenar los datos del cliente y los datos de los pedidos
                 String datos = datosCliente + "\n" + datosPedidos.toString();

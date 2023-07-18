@@ -29,7 +29,7 @@ public class ProductsActivity extends AppCompatActivity  {
     private Button btnCarrito, btnVolver;
     ArrayList<Pedido> listaArrayCarritoProducts;
 
-    Integer idUser;
+    int idUser;
     int idPedido;
     String metodoEnvio;
 
@@ -39,39 +39,30 @@ public class ProductsActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_products);
 
         listaProducts = findViewById(R.id.listaProducts);
-
         listaProducts.setLayoutManager(new LinearLayoutManager(this));
 
-
-        // recibo id del user vacio creado en MainActivity
-        // recibo el id de pedido: vacio de MainActivity. O con valor de VerProduct.
+        // recibo id del user y id del pedido vacio creado en MainActivity
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
 
             if(extras != null){
                 idUser = extras.getInt("idUser");
                 idPedido = extras.getInt("idPedido");
+
             } else {
-                try {
-                    idUser = Integer.parseInt(null);
-                    idPedido = Integer.parseInt(null);
-                } catch (Exception ex) {
-                    ex.toString();
-                } finally {
-
-                }
+                idUser = Integer.parseInt(null);
+                idPedido = Integer.parseInt(null);
             }
+
         } else {
-            idUser = (int) savedInstanceState.getInt("idUser");
-
-            idPedido = (int) savedInstanceState.getInt("idPedido");
-
+            idUser = savedInstanceState.getInt("idUser");
+            idPedido = savedInstanceState.getInt("idPedido");
         }
+
 
 
         DbProducts dbProducts = new DbProducts(ProductsActivity.this);
         DbPedidos dbPedidos = new DbPedidos(ProductsActivity.this);
-
 
         listaArrayProducts = new ArrayList<>();
 
@@ -86,45 +77,23 @@ public class ProductsActivity extends AppCompatActivity  {
 
                 listaArrayCarritoProducts = dbPedidos.mostrarPedidos(idUser);
 
-                System.out.println("Carrito productos btncarrito productsActivity");
-                System.out.println(listaArrayCarritoProducts);
-                System.out.println(" Vacio: " + listaArrayCarritoProducts.isEmpty());
-
-
                 if (!listaArrayCarritoProducts.isEmpty()) {
-
-                    System.out.println("  ");
-                    System.out.println("  ");
-                    System.out.println(" No esta vacio! ");
-                    System.out.println("  ");
-                    System.out.println("  ");
 
                     Intent intent = new Intent(getApplicationContext(), CarritoActivity.class);
 
                     intent.putExtra("idPedido", idPedido);
                     intent.putExtra("idUser", idUser);
-
-                    System.out.println();
-                    System.out.println("En el product activity");
-                    System.out.println("id del user: ");
-                    System.out.println(idUser);
-                    System.out.println();
-
                     intent.putExtra("metodoEnvio", metodoEnvio);
 
                     startActivity(intent);
 
                 } else {
-                    System.out.println("  ");
-                    System.out.println(" VACIO ");
-                    System.out.println("  ");
                     Toast.makeText(ProductsActivity.this, "Aún no sumaste productos a tu carrito.", Toast.LENGTH_LONG).show();
-                    System.out.println("PEDIDO");
-                    System.out.println(idPedido);
                 }
 
             }
         });
+
 
         btnVolver = findViewById(R.id.btnVolver);
         btnVolver.setOnClickListener(new View.OnClickListener() {
@@ -135,18 +104,12 @@ public class ProductsActivity extends AppCompatActivity  {
                 startActivity(volver);
             }
         });
-
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu){
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // hide the back button
         return true;
-
-    }
-
-    @Override
-    public void onBackPressed (){
-
     }
 
 }
